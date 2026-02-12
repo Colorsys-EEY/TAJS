@@ -1,0 +1,10 @@
+# Build output
+out/
+target/
+
+# IDE / OS
+*.iml
+.idea/workspace.xml
+.idea/shelf/
+.DS_Store
+*~
