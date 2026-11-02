@@ -100,7 +100,7 @@ public class Enemy extends GamaObject{
         }
         if (Game.SHOWHIT) {
             g.setColor(Color.white);
-            g.drawRect(x - 256, y + 10, 256, 4);
+            g.drawRect(x - 256, y + 10, 100, 4);
             g.setColor(Color.black);
             g.drawRect(x,y,32,39);
         }
@@ -117,7 +117,7 @@ public class Enemy extends GamaObject{
     @Override
     public Rectangle getBounds2() {
         if (chare== Player.Char.Enenmy1){
-            return new Rectangle(x-256, y+10, 256,4);
+            return new Rectangle(x-256, y+10, 100,4);
         }
         return null;
     }

@@ -83,7 +83,7 @@ public class Item extends GamaObject{
                     g.drawImage(Controller,x,y,null);
                 }else if (player.chare== Player.Char.Emely) {
                     g.drawImage(Cpu,x,y,null);
-                } else if (player.chare!= Player.Char.none) {
+                } else if (player.chare!= Player.Char.none&&player.id==ID.Player) {
                     g.drawImage(Heart,x,y,null);
                 }
             }
@@ -109,7 +109,7 @@ public class Item extends GamaObject{
                     g.drawImage(Book,x,y,null);
                 }else if (player.chare== Player.Char.Emely) {
                     g.drawImage(Pixel,x,y,null);
-                } else if (player.chare!= Player.Char.none) {
+                } else if (player.chare!= Player.Char.none&&player.id==ID.Player) {
                     g.drawImage(Book,x,y,null);
                 }
             }
@@ -126,7 +126,7 @@ public class Item extends GamaObject{
                     g.drawImage(Coffe,x,y,null);
                 }else if (player.chare== Player.Char.Emely) {
                     g.drawImage(Electricity,x,y,null);
-                }else if (player.chare!= Player.Char.none){
+                }else if (player.chare!= Player.Char.none&&player.id==ID.Player){
                     g.drawImage(Coin,x,y,null);
                 }
             }

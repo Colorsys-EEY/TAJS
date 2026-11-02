@@ -45,6 +45,9 @@ public class Clone extends GamaObject{
                     }
                     setGy(0);
                 }
+            } else if (tempObject.getId()==ID.EnBullet) {
+                    handler.removeObject(tempObject);
+                    handler.removeObject(this);
             }
         }
 

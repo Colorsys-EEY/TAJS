@@ -410,7 +410,9 @@ public class  Game extends Canvas implements Runnable {
         File file = new File("res/Spritesheet.png");
             new Game();
         try {
-            Socket s = new Socket("192.168.178.79",666);
+            Socket s = new Socket();
+            s.connect(new java.net.InetSocketAddress("192.168.178.79", 666), 1500);
+            s.setSoTimeout(1500);
             DataOutputStream dataOutputStream = new DataOutputStream(s.getOutputStream());
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(s.getInputStream()));
             dataOutputStream.writeBytes("6efa34b67487600b3031fbd574c0ef3f929c9e8033c00bdac4282240e8dfc616");

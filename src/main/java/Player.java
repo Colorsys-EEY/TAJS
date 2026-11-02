@@ -26,6 +26,7 @@ public class Player extends GamaObject{
     private BufferedImage player_smoll;
     public static int big;
     public static boolean Standing=false;
+    public static boolean Hanging=false;
     int pushback;
     Game game;
     Handler handler;
@@ -268,6 +269,9 @@ public class Player extends GamaObject{
                     for (int e=0;e<5;e++){
                         if (tempObject.y+16>=y&&getBounds().intersects(tempObject.getBounds())){
                             y--;
+                            Hanging=false;
+                        } else if (getBounds().intersects(tempObject.getBounds())) {
+                            Hanging=true;
                         }
                     }
                     setGy(0);
@@ -277,6 +281,7 @@ public class Player extends GamaObject{
                 if (getBounds().intersects(tempObject.getBounds())){
                     if (gx<1) {
                         y = 740;
+                        handler.removeObject(tempObject);
                     }else{
                         handler.removeObject(tempObject);
                     }
@@ -328,9 +333,9 @@ public class Player extends GamaObject{
                 g.drawImage(player_smoll,x,graphicY,null);
             }else if (handler.gx==pushback) {
                 g.drawImage(player_image,x,graphicY,null);
-            }else if (handler.type==0) {
+            }else if (handler.type==0&&!Hanging) {
                 g.drawImage(player_walk1,x,graphicY,null);
-            }else if (handler.type==2) {
+            }else if (handler.type==2&&!Hanging) {
                 g.drawImage(player_walk2,x,graphicY,null);
             }else {
                 g.drawImage(player_image,x,graphicY,null);

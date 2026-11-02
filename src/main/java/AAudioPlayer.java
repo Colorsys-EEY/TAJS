@@ -1,5 +1,7 @@
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
@@ -18,7 +20,26 @@ public class AAudioPlayer {
         System.out.println(filePath);
         final File file = new File(filePath);
 
-        try (final AudioInputStream in = getAudioInputStream(file)) {
+        final AudioInputStream raw;
+        try {
+            if (file.exists()) {
+                raw = getAudioInputStream(file);
+                System.out.println("Ur game isnt magically missing this audiofile such wow");
+            } else {
+                final InputStream resource =
+                        getClass().getResourceAsStream("/" + file.getName());
+                if (resource == null) {
+                    System.out.println("Audiofile missing: " + filePath);
+                    return;
+                }
+                raw = getAudioInputStream(new BufferedInputStream(resource));
+            }
+        } catch (UnsupportedAudioFileException | IOException e) {
+            System.out.println("Audiofile missing or Corrupted");
+            return;
+        }
+
+        try (final AudioInputStream in = raw) {
 
             final AudioFormat outFormat = getOutFormat(in.getFormat());
             final Info info = new Info(SourceDataLine.class, outFormat);
@@ -35,9 +56,7 @@ public class AAudioPlayer {
                 }
             }
 
-        } catch (UnsupportedAudioFileException
-                 | LineUnavailableException
-                 | IOException e) {
+        } catch (LineUnavailableException | IOException e) {
             System.out.println("Audiofile missing or Corrupted");
         }
     }

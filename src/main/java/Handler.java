@@ -153,7 +153,7 @@ public class Handler {
                         Game.Createblocks=0;
                 }
 
-                if (tempObject.getY()>750&&!save&&save2<1) {
+                if (tempObject.getY()>950&&!save&&save2<1) {
                     if (tempObject.getChar()== Player.Char.Ipek&&random.nextBoolean()){
                         tempObject.gy=-80;
                         game.Action=50;
